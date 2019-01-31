@@ -14,7 +14,7 @@
     'notificationService'
   ];
 
-  function MenubarController($scope, 
+  function MenubarController($scope,
                              $window,
                              $state,
                              dialogService,
@@ -55,7 +55,7 @@
     }
 
     function _shortcut_projectclose(f) {
-      if (!$scope.$$phase) { 
+      if (!$scope.$$phase) {
         $scope.$apply(function() { onCloseProject(); });
       } else {
         onCloseProject();
@@ -63,7 +63,7 @@
       return false;
     }
     function _shortcut_projectsave(f) {
-      if (!$scope.$$phase) { 
+      if (!$scope.$$phase) {
         $scope.$apply(function() { onSaveProject(); });
       } else {
         onSaveProject();
@@ -143,8 +143,8 @@
       if ($window.editor.isDirty()) {
         dialogService
           .confirm(
-            'Leave without saving?', 
-            'If you proceed you will lose all unsaved modifications.', 
+            'Leave without saving?',
+            'If you proceed you will lose all unsaved modifications.',
             null)
           .then(doClose);
       } else {
@@ -186,7 +186,7 @@
     }
     function onCopy() {
       var tree = _getTree();
-      tree.edit.copy(); 
+      tree.edit.copy();
       return false;
     }
     function onCut() {

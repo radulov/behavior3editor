@@ -1,4 +1,5 @@
 var app = require('app');  // Module to control application life.
+var Menu = require('menu');
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 
 // Report crashes to our server.
@@ -25,6 +26,46 @@ app.on('ready', function() {
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
+
+  var template = [{
+    label: 'FromScratch',
+    submenu: [{
+      label: 'Quit',
+      accelerator: 'CmdOrCtrl+Q',
+      click: function() { app.quit(); }
+    }]
+  }, {
+    label: 'Edit',
+    submenu: [{
+      label: 'Undo',
+      accelerator: 'CmdOrCtrl+Z',
+      selector: 'undo:'
+    }, {
+      label: 'Redo',
+      accelerator: 'Shift+CmdOrCtrl+Z',
+      selector: 'redo:'
+    }, {
+      type: 'separator'
+    }, {
+      label: 'Cut',
+      accelerator: 'CmdOrCtrl+X',
+      selector: 'cut:'
+    }, {
+      label: 'Copy',
+      accelerator: 'CmdOrCtrl+C',
+      selector: 'copy:'
+    }, {
+      label: 'Paste',
+      accelerator: 'CmdOrCtrl+V',
+      selector: 'paste:'
+    }, {
+      label: 'Select All',
+      accelerator: 'CmdOrCtrl+A',
+      selector: 'selectAll:'
+    }]
+  }];
+  var osxMenu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(osxMenu);
 
   // Open the DevTools.
   // mainWindow.openDevTools();

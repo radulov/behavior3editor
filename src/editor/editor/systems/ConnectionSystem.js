@@ -81,7 +81,7 @@ b3e.editor.ConnectionSystem = function(editor) {
     project.history._beginBatch();
     if (!block || block === connection._inBlock || block.category === 'root') {
       if (lastOutBlock) {
-        // Add again to connection in order to create history 
+        // Add again to connection in order to create history
         lastOutBlock._inConnection = connection;
         connection._outBlock = lastOutBlock;
       }
@@ -90,20 +90,20 @@ b3e.editor.ConnectionSystem = function(editor) {
       var c;
 
       // if double parent on node
-      if (block._inConnection) {
-
-        c = block._inConnection;
-        tree.connections.remove(c);
-      }
-
-      // if double children on root
-      if ((connection._inBlock.category === 'root' ||
-           connection._inBlock.category === 'decorator') &&
-           connection._inBlock._outConnections.length > 1) {
-
-        c = connection._inBlock._outConnections[0];
-        tree.connections.remove(c);
-      }
+      // if (block._inConnection) {
+      //
+      //   c = block._inConnection;
+      //   tree.connections.remove(c);
+      // }
+      //
+      // // if double children on root
+      // if ((connection._inBlock.category === 'root' ||
+      //      connection._inBlock.category === 'decorator') &&
+      //      connection._inBlock._outConnections.length > 1) {
+      //
+      //   c = connection._inBlock._outConnections[0];
+      //   tree.connections.remove(c);
+      // }
 
       connection._outBlock = block;
       block._inConnection = connection;

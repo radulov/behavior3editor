@@ -22,26 +22,20 @@
   };
 
   b3e.draw.sequenceSymbol = function(block, settings) {
-    // var shape = block.displayObject;
-    // var shape = block._shapeObject;
-    var shape = new createjs.Shape();
+    var text = new createjs.Text(
+        block.getTitle(),
+        '18px Arial',
+        settings.get('block_symbol_color')
+    );
+    text.textAlign = 'center';
 
-    var w = block._width;
-    var h = block._height;
-    var swidth = h/20;
-    var ssize = h/4;
-    var scolor = settings.get('block_symbol_color');
+    var bounds = text.getBounds();
+    text.regY = bounds.height/2;
 
-    shape.graphics.setStrokeStyle(swidth, 'round');
-    shape.graphics.beginStroke(scolor);
-    shape.graphics.beginFill(scolor);
-    shape.graphics.moveTo(-ssize, 0);
-    shape.graphics.lineTo(ssize, 0);
-    shape.graphics.drawPolyStar(ssize/2, 0, ssize/2, 3, 0, 0);
-    shape.graphics.endFill();
-    shape.graphics.endStroke();
+    // text.x = -block._width/2;
+    // text.y = -block._height/2;
 
-    return shape;
+    return text;
   };
 
   b3e.draw.memsequenceSymbol = function(block, settings) {
